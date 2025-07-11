@@ -22,8 +22,8 @@ export default function Tweet() {
       });
       setTweets(res.data.data);
     } catch (err) {
-      console.error('❌ Failed to fetch tweets:', err);
-      setError('Failed to load tweets');
+      console.error('Failed to fetch tweets:', err);
+      setError('Please login to view blogs');
     } finally {
       setLoading(false);
     }

@@ -123,10 +123,14 @@ export default function ProfilePage() {
 
   return (
     <div className="bg-black min-h-screen text-white">
-      <div
-        className="h-48 sm:h-60 md:h-72 bg-cover bg-center"
-        style={{ backgroundImage: `url(${profile.coverImage || 'https://via.placeholder.com/1280x300'})` }}
-      />
+     {profile.coverImage ? (
+  <div
+    className="h-48 sm:h-60 md:h-72 bg-cover bg-center"
+    style={{ backgroundImage: `url(${profile.coverImage})` }}
+  />
+) : (
+  <div className="h-48 sm:h-60 md:h-72 bg-gradient-to-r from-purple-700 to-indigo-700" />
+)}
 
       <div className="flex flex-col sm:flex-row items-center sm:items-end justify-between -mt-16 sm:-mt-20 w-full px-6 sm:px-12">
         <div className="flex items-center space-x-4">

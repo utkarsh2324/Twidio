@@ -68,12 +68,25 @@ const Dashboard = () => {
     Views: video.view,
     Likes: video.likeCount || 0,
   }));
-
-  if (loading || !stats) return <div className="text-white p-4">Please login to view dashboard</div>;
+  if (loading) {
+    return (
+      <div className="text-white p-4 text-left text-lg font-semibold">
+        Loading dashboard...
+      </div>
+    );
+  }
+  
+  if (!stats) {
+    return (
+      <div className="text-red-500 p-4 text-left text-lg font-semibold">
+        Please login to view dashboard
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#0f172a] text-white px-4 md:px-8 py-6">
-      <h1 className="text-4xl font-extrabold mb-8 text-center">📊 Channel Insights</h1>
+      <h1 className="text-4xl font-extrabold mb-8 text-center">Channel Insights</h1>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-12">
         <StatCard title="Total Videos" value={stats.totalVideos} color="bg-sky-600" />
@@ -84,7 +97,7 @@ const Dashboard = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-        <ChartCard title="📈 Most Viewed & Liked Videos">
+        <ChartCard title="Most Viewed & Liked Videos">
           <BarChart layout="vertical" data={barData}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis type="number" />
@@ -100,7 +113,7 @@ const Dashboard = () => {
           </BarChart>
         </ChartCard>
 
-        <ChartCard title="📅 Views by Publish Date">
+        <ChartCard title=" Views by Publish Date">
           <LineChart
             data={videos.map((video) => ({
               date: new Date(video.createdAt).toLocaleDateString(),
@@ -115,7 +128,7 @@ const Dashboard = () => {
           </LineChart>
         </ChartCard>
 
-        <ChartCard title="🧁 Views Distribution">
+        <ChartCard title=" Views Distribution">
           <PieChart>
             <Pie
               data={barData}
@@ -157,7 +170,7 @@ const Dashboard = () => {
           </PieChart>
         </ChartCard>
 
-        <ChartCard title="📊 Engagement Over Time">
+        <ChartCard title=" Engagement Over Time">
           <AreaChart
             data={videos.map((video) => ({
               date: new Date(video.createdAt).toLocaleDateString(),
@@ -184,22 +197,14 @@ const Dashboard = () => {
           </AreaChart>
         </ChartCard>
 
-        <ChartCard title="⏱️ Likes by Time of Day">
-          <LineChart data={aggregateLikesByTime(likeTimeline)}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="time" />
-            <YAxis allowDecimals={false} />
-            <Tooltip />
-            <Line type="monotone" dataKey="Likes" stroke="#f97316" strokeWidth={2} />
-          </LineChart>
-        </ChartCard>
+   
         {/* ⬇️ Paste your histogram and table below this */}
 
 
 
 {/* Table - Video Summary */}
 <div className="bg-[#1e293b] text-white rounded-xl shadow p-6 mt-10 overflow-x-auto">
-  <h2 className="text-2xl font-semibold mb-4">📋 Video Summary Table</h2>
+  <h2 className="text-2xl font-semibold mb-4">Video Summary Table</h2>
   <table className="min-w-full text-sm text-left">
     <thead>
       <tr className="bg-[#334155] text-white">

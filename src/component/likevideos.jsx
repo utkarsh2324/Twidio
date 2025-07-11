@@ -91,7 +91,7 @@ export default function LikedVideos() {
                 </div>
 
                 <div className="flex items-center justify-between text-xs text-gray-500 mt-2">
-                  <span>👁️ {video.view || 0} views</span>
+                  <span> {video.view || 0} views</span>
                   <span>{formatDate(video.createdAt)}</span>
                 </div>
               </div>

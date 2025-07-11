@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import logo from '../assets/logo1.png'; // ✅ update path if needed
+import logo from '../assets/logo1.png'; // Adjust if needed
 
 export default function HomePage() {
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showMenuId, setShowMenuId] = useState(null);
-  const [showSplash, setShowSplash] = useState(true); // 🌟 Splash screen state
+  const [showSplash, setShowSplash] = useState(true);
 
   const formatDate = (dateString) => {
     if (!dateString) return 'Unknown';
@@ -43,16 +43,14 @@ export default function HomePage() {
     fetchAllVideos();
   }, []);
 
-  // 🌟 Show splash screen for 2 seconds
   useEffect(() => {
     const timeout = setTimeout(() => {
       setShowSplash(false);
-    }, 1200); // adjust duration as needed (in milliseconds)
+    }, 1200);
 
     return () => clearTimeout(timeout);
   }, []);
 
-  // 🌟 Splash screen
   if (showSplash) {
     return (
       <div className="fixed inset-0 bg-black flex items-center justify-center z-50">
@@ -77,18 +75,18 @@ export default function HomePage() {
               className="relative bg-gray-900 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition transform hover:-translate-y-1 duration-300 group cursor-pointer"
             >
               <Link to={`/watch/${video._id}`}>
-                <div className="w-full h-48 bg-gray-800">
+                <div className="w-full h-48 bg-gray-800 flex items-center justify-center">
                   <img
                     src={video.thumbnail || 'https://via.placeholder.com/320x180'}
                     alt={video.title}
-                    className="w-full h-full object-cover"
+                    className="max-h-full max-w-full object-contain"
                   />
                 </div>
               </Link>
 
               <div className="p-4 relative">
-                {/* 3-dot menu */}
-                <div className="absolute top-2 right-2">
+                {/* Dropdown Menu (below ⋯) */}
+                <div className="absolute top-2 right-2 z-20">
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
@@ -99,15 +97,19 @@ export default function HomePage() {
                   >
                     ⋯
                   </button>
+
                   {showMenuId === video._id && (
-                    <div className="absolute right-0 mt-2 bg-gray-800 text-white rounded shadow-md z-10">
-                      <Link
-                        to={`/add-to-playlist/${video._id}`}
-                        className="block px-4 py-2 text-sm hover:bg-gray-700"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        ➕ Add to Playlist
-                      </Link>
+                    <div className="absolute right-0 mt-2 bg-gray-800 text-white rounded shadow-lg z-20">
+                    <Link
+  to={`/add-to-playlist/${video._id}`}
+  className="whitespace-nowrap px-4 py-2 text-sm hover:bg-gray-700 block"
+  onClick={(e) => {
+    e.stopPropagation();
+    setShowMenuId(null);
+  }}
+>
+  ➕ Add to Playlist
+</Link>
                     </div>
                   )}
                 </div>
@@ -129,7 +131,7 @@ export default function HomePage() {
 
                   {/* Views + Upload Date */}
                   <div className="flex items-center justify-between text-xs text-gray-500 mt-2">
-                    <span>👁️ {video.view || 0} views</span>
+                    <span> {video.view || 0} views</span>
                     <span>{formatDate(video.createdAt)}</span>
                   </div>
                 </Link>

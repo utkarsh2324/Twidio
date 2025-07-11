@@ -162,17 +162,23 @@ export default function Signup() {
                 onChange={handleChange}
                 className="w-full text-sm text-gray-400 file:bg-indigo-600 file:text-white file:rounded file:px-4 file:py-2 bg-gray-800 border border-gray-700 rounded"
               />
+              <p className="text-xs text-gray-500 mt-1">
+  Supported formats: JPG, PNG.
+</p>
             </div>
 
             <div>
-              <label className="block text-sm text-gray-300 mb-1">Cover Image</label>
-              <input
-                type="file"
-                name="cover"
-                accept="image/*"
-                onChange={handleChange}
-                className="w-full text-sm text-gray-400 file:bg-indigo-600 file:text-white file:rounded file:px-4 file:py-2 bg-gray-800 border border-gray-700 rounded"
-              />
+            <label className="block text-sm text-gray-300 mb-1">Cover Image</label>
+<input
+  type="file"
+  name="cover"
+  accept="image/*"
+  onChange={handleChange}
+  className="w-full text-sm text-gray-400 file:bg-indigo-600 file:text-white file:rounded file:px-4 file:py-2 bg-gray-800 border border-gray-700 rounded"
+/>
+<p className="text-xs text-gray-500 mt-1">
+  Recommended size: <strong>1280 × 360</strong> pixels. Supported formats: JPG, PNG.
+</p>
             </div>
 
             <div className="mt-10">
