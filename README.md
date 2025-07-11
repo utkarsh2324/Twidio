@@ -2,7 +2,6 @@
 
 Twidio is a full-stack video streaming and social media platform inspired by YouTube and Twitter. It offers a modern, responsive user interface where users can upload videos, interact through likes, comments, subscriptions, tweets, and more.
 
-![Twidio Banner](https://via.placeholder.com/1200x400?text=Twidio+Showcase)
 
 ## 🚀 Features
 
